@@ -162,9 +162,9 @@ void PixelUnshuffleKernel(const Context& ctx,
                           const std::string& data_format,
                           DenseTensor* out);
 ```
+其实现方式与设备无关，将其实现以及在CPU、GPU上的注册放在`paddle/phi/kernels/pixel_unshuffle_kernel.cc`中。
 
 反向核函数的原型（定义在`paddle/phi/kernels/pixel_unshuffle_grad_kernel.h`）设计为
-
 ```c++
 template <typename T, typename Context>
 void PixelUnshuffleGradKernel(const Context& ctx,
@@ -173,13 +173,7 @@ void PixelUnshuffleGradKernel(const Context& ctx,
                             const std::string& data_format,
                             DenseTensor* x_grad);
 ```
-
-它们的实现定义在`paddle/phi/kernels/impl/pixel_unshuffle_kernel_impl.h`和`paddle/phi/kernels/impl/pixel_unshuffle_grad_kernel_impl.h`，它们的注册放在
-
-- `paddle/phi/kernels/cpu/pixel_unshuffle_kernel.cc`
-- `paddle/phi/kernels/cpu/pixel_unshuffle_grad_kernel.cc`
-- `paddle/phi/kernels/gpu/pixel_unshuffle_kernel.cu`
-- `paddle/phi/kernels/gpu/pixel_unshuffle_grad_kernel.cu`
+其实现方式与设备无关，将其实现以及在CPU、GPU上的注册放在`paddle/phi/kernels/pixel_unshuffle_grad_kernel.cc`中。
 
 ## API实现方案
 
